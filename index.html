@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LA Sports Fan</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:rgba(255,255,255,.04); --panel2:rgba(255,255,255,.02);
+    --line:rgba(255,255,255,.08); --fg:#edf2fa; --dim:#8a94a6;
+    --radius:18px; --glow:0 0 0 1px rgba(255,255,255,.04), 0 24px 60px -30px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 500px at 20% -10%, rgba(42,111,216,.18), transparent 60%),
+      radial-gradient(1000px 500px at 90% -10%, rgba(153,0,0,.14), transparent 60%),
+      radial-gradient(900px 400px at 50% 110%, rgba(31,78,156,.16), transparent 60%),
+      var(--bg);
+    color:var(--fg); min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+    padding:28px clamp(16px,4vw,64px) 64px;
+  }
+  header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{
+    width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;
+    background:linear-gradient(135deg,#2a6fd8,#991111);box-shadow:0 8px 30px -8px rgba(60,90,220,.6);
+  }
+  h1{font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-.02em}
+  .sub{color:var(--dim);font-size:13px;margin-top:4px}
+  .ticker{
+    font-size:12px;color:var(--dim);padding:8px 14px;border-radius:99px;
+    background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
+  }
+  .ticker b{color:#7ce38b}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;backdrop-filter:blur(14px);box-shadow:var(--glow);position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--team,#2a6fd8),transparent);
+  }
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .ico{
+    width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;
+    background:color-mix(in srgb,var(--team) 22%, transparent);
+  }
+  .name{font-size:18px;font-weight:800;letter-spacing:-.01em}
+  .rec{font-size:11px;color:var(--team);font-weight:700;margin-top:2px}
+  .hline{font-size:13px;line-height:1.5;color:var(--dim);padding:10px 12px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);margin-bottom:16px}
+  h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+  h3::after{content:"";flex:1;height:1px;background:var(--line)}
+  .news{list-style:none}
+  .news li{padding:10px 12px;border-radius:12px;margin-bottom:6px;background:var(--panel2);border:1px solid var(--line);transition:.2s}
+  .news li:hover{border-color:color-mix(in srgb,var(--team) 50%, transparent);transform:translateX(3px)}
+  .news a{color:var(--fg);text-decoration:none;font-weight:700;font-size:13px;display:block;margin-bottom:4px}
+  .news a:hover{color:var(--team)}
+  .news p{font-size:12px;color:var(--dim);line-height:1.5}
+  .facts{list-style:none;display:grid;gap:6px}
+  .facts li{position:relative;padding:2px 0 2px 18px;font-size:12.5px;color:var(--fg);line-height:1.55}
+  .facts li::before{content:"⚡";position:absolute;left:0;top:2px;font-size:11px;filter:grayscale(.4)}
+  .read{list-style:none;display:grid;gap:6px}
+  .read a{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:12.5px;color:var(--fg);text-decoration:none;padding:9px 12px;border-radius:12px;background:var(--panel2);border:1px solid var(--line)}
+  .read a:hover{color:var(--team);border-color:color-mix(in srgb,var(--team) 50%, transparent)}
+  .read .why{font-size:11px;color:var(--dim)}
+  .oss{font-size:12.5px;line-height:1.6;color:var(--fg);background:linear-gradient(90deg,color-mix(in srgb,var(--team) 18%,transparent),transparent);border-left:3px solid var(--team);padding:10px 14px;border-radius:0 12px 12px 0;margin-top:16px}
+  banner{display:block;text-align:center;color:var(--dim);font-size:13px;margin-top:22px}
+  banner span{color:#7ce38b;animation:blink 1.5s infinite}
+  @keyframes blink{50%{opacity:.3}}
+  .spin{width:100%;height:100px;display:grid;place-items:center;color:var(--dim)}
+  /* ---- digest ---- */
+  .digest{
+    background:linear-gradient(135deg,rgba(42,111,216,.12),rgba(153,0,0,.10),rgba(31,78,156,.12)),var(--panel);
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+    backdrop-filter:blur(14px);box-shadow:var(--glow);margin-bottom:22px;
+  }
+  .dhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between;margin-bottom:14px}
+  .dhead .t{display:flex;align-items:center;gap:12px}
+  .mic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:19px;background:linear-gradient(135deg,#2a6fd8,#991111)}
+  .dhead h2{font-size:19px;font-weight:800;letter-spacing:-.015em}
+  .dhead .meta{color:var(--dim);font-size:12px;margin-top:3px}
+  .langs{display:flex;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:4px}
+  .langs button{border:0;background:transparent;color:var(--dim);font-size:12px;font-weight:700;padding:6px 16px;border-radius:99px;cursor:pointer;transition:.2s}
+  .langs button.on{background:linear-gradient(135deg,#2a6fd8,#1f4e9c);color:#fff}
+  .intro{font-size:14px;line-height:1.65;color:var(--fg);max-width:820px;margin-bottom:18px}
+  .segs{display:grid;gap:12px}
+  .seg{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--panel2)}
+  .seg .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .seg .row .hn{font-weight:800;font-size:14.5px}
+  .seg .badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,var(--team,#2a6fd8) 20%,transparent);color:var(--team);white-space:nowrap}
+  .seg p{font-size:12.5px;line-height:1.6;color:var(--dim);margin-top:6px}
+  .seg p.cls{color:var(--fg)}
+  .seg .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin-top:10px;font-weight:700}
+  .closing{font-size:14px;line-height:1.6;border-top:1px dashed var(--line);margin-top:16px;padding-top:14px;color:var(--fg)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">LA</div>
+    <div>
+      <h1>LA Sports Fan Command Center</h1>
+      <div class="sub">Dodgers ⚾ · USC Trojans 🏈 · Rams 🏆 — all three teams, one feed</div>
+    </div>
+  </div>
+  <div class="ticker">Snapshot <b>2026-08-17 14:55 UTC</b></div>
+</header>
+<section class="digest" id="digest"><div class="spin">Loading analyst digest…</div></section>
+<main class="grid" id="grid"></main>
+<banner><span>●</span> Feed rendered from sports-caster subagent · static snapshot</banner>
+<script>
+const TEAMS_DATA = {"updated_at": "2026-08-17T14:48:42.673867+00:00", "teams": [{"name": "Dodgers", "sport": "MLB", "emoji": "Baseball", "accent": "#2A6FD8", "record": "74-51 (.592)", "headline": "Dodgers Drop 3 of 4 to Brewers as Roberts Laments 'Below Average' Offense and Diaz Meltdowns", "latest_news": [{"title": "Roberts Decries Dodgers' Inability to Play 'Clean Baseball'", "summary": "Manager Dave Roberts called out his team after a 6-2 loss to the Brewers cost the Dodgers a key tiebreaker. Los Angeles is 5-11 in its past 16 games and 18-21 since July 1, with the offense ranking 23rd in runs scored over that stretch.", "url": "https://abcnews.com/Sports/wireStory/dave-roberts-decries-dodgers-inability-play-clean-baseball-135698262"}, {"title": "Wrobleski Placed on 15-Day IL with Forearm Inflammation", "summary": "All-Star lefty Justin Wrobleski (11-5, 3.56 ERA) was placed on the injured list with left forearm inflammation. Kyle Hurt was recalled from Triple-A. Tyler Glasnow (back) is expected to return during the upcoming road trip after one more rehab start Wednesday.", "url": "https://www.newsweek.com/sports/mlb/dodgers-place-all-star-starting-pitcher-on-il-12329348"}, {"title": "Ohtani Throws First Bullpen Session, Eyes September Mound Return", "summary": "Shohei Ohtani threw 34 pitches with his full pitch mix on Aug. 15, his first bullpen session since restarting his throwing program. The two-way star (8-2, 1.79 ERA as a pitcher) could return to the mound in early-to-mid September if he progresses through live BP sessions.", "url": "https://www.espn.com/mlb/story/_/id/49616233/dodgers-ohtani-throws-bullpen-session-big-step-return"}, {"title": "Diaz Blows Third Save in Four Appearances; ERA Balloons to 11.57", "summary": "Closer Edwin Diaz gave up four consecutive singles and three runs in the ninth inning of Thursday's 5-4 loss to Milwaukee. Roberts said he has 'no other option' at closer despite the meltdown, citing inconsistent alternatives throughout the bullpen.", "url": "https://www.espn.com/mlb/story/_/id/49607082/roberts-stick-diaz-dodgers-closer-latest-meltdown"}, {"title": "Tucker Benched for Mental Reset Amid Brutal Home Splits", "summary": "Kyle Tucker was held out of Saturday's lineup due to visible frustration with his .192/.290/.276 batting line at Dodger Stadium, compared to .275/.371/.469 on the road. Roberts said Tucker is 'conscious' of the stark splits and needed a day to reset.", "url": "https://dodgerblue.com/kyle-tucker-frustrated-by-struggles-playing-at-dodger-stadium/2026/08/16/"}, {"title": "SI: Dodgers' Fatal Flaws Are Finally Catching Up With Them", "summary": "Ohtani, Tucker, Freeman, and Betts combined to go 5-for-50 in the Brewers series. The $153.5M quartet has been overmatched as the lineup's four highest-paid hitters struggle through extended slumps.", "url": "https://www.si.com/mlb/dodgers-fatal-flaws-are-finally-catching-up-with-them"}], "fun_facts": ["Max Muncy just passed Eric Karros for the most home runs in Dodger Stadium history", "The Dodgers still lead the NL West by 7 games despite going 18-21 since July 1", "Ohtani's 1.79 ERA as a pitcher would rank among MLB leaders if he had enough innings for qualification", "Blake Snell returned from the IL on Aug. 11 and struck out 10 Royals over six dominant innings", "Yoshinobu Yamamoto struck out 9 across six innings in Friday's 3-1 win over Milwaukee"], "further_reading": [{"title": "The Dodgers' Fatal Flaws Are Finally Catching Up With Them", "why": "Comprehensive analysis of the offense's extended funk, bullpen woes, and what needs to change for October", "url": "https://www.si.com/mlb/dodgers-fatal-flaws-are-finally-catching-up-with-them"}, {"title": "Ohtani Pitching Timeline Breakdown", "why": "CBS Sports details the step-by-step progression Ohtani needs before returning to the mound", "url": "https://www.cbssports.com/mlb/news/shohei-ohtani-dodgers-bullpen-session-injury-update-timeline/"}, {"title": "Tucker's Home-Road Splits Explained", "why": "Marcas examines Tucker's baffling .192 average at home versus .275 on the road", "url": "https://www.marca.com/en/mlb/los-angeles-dodgers/2026/08/16/unlike-shohei-ohtani-one-specific-dodgers-player-truly-hates-playing-at-dodgers-stadium.html"}, {"title": "Diaz Closer Situation: Roberts Weighs Options", "why": "In-depth look at the Dodgers' closer dilemma and potential alternatives to Diaz", "url": "https://www.nbcsports.com/mlb/news/another-bullpen-meltdown-leaves-dodgers-manager-dave-roberts-infuriated-and-edwin-diaz-frustrated"}], "one_sentence": "The Dodgers (74-51) hold a comfortable NL West lead but are mired in a brutal 5-11 skid with a slumping offense, a closer crisis, and an IL hit to their rotation—though Ohtani and Glasnow are nearing returns."}, {"name": "USC Trojans", "sport": "College Football", "emoji": "Football", "accent": "#9E1B32", "record": "0-0 (2026 season opens Aug 29)", "headline": "Lincoln Riley says depth chart clarifying as Trojans enter final two weeks before opener vs. San Jose State", "latest_news": [{"title": "Lincoln Riley, USC find depth-chart clarity after pivotal scrimmage", "summary": "USC's Week Zero scrimmage inside the Coliseum helped the coaching staff narrow down starting and two-deep roles, especially at wide receiver and the offensive line. Riley says the staff is getting a 'pretty good idea' of Game 1 roles heading into the final two weeks of fall camp.", "url": "https://247sports.com/college/usc/article/lincoln-riley-usc-find-depth-chart-clarity-288984542/"}, {"title": "Center Kilian O'Connor out for the season with injury", "summary": "Projected starting center Kilian O'Connor, a redshirt senior and former walk-on, suffered a season-ending injury in practice. Tobias Raymond is expected to slide into the center role after working there in spring.", "url": "https://sports.yahoo.com/articles/usc-offensive-line-must-adjust-222708229.html"}, {"title": "Jayden Maiava and Waymond Jordan named to Maxwell Award Watch List", "summary": "QB Jayden Maiava (3,711 yards, 24 TDs in 2025) and RB Waymond Jordan, who rushed for 576 yards in six games before a season-ending injury, earned Maxwell Award preseason recognition. Maiava also earned Big Ten Preseason Honors.", "url": "https://usctrojans.com/news/2026/8/4/football-uscs-jayden-maiava-and-waymond-jordan-named-to-maxwell-award-watch-list"}, {"title": "Kicker Ryon Sayeri named to Lou Groza Award Watch List", "summary": "Sayeri set USC's single-season FG record with 21 made last year, including a 54-yarder vs. Michigan. He went 21-of-25 on FGs and 48-of-48 on PATs as a redshirt freshman.", "url": "https://usctrojans.com/news/2026/8/7/football-usc-kicker-ryon-sayeri-named-to-lou-groza-award-watch-list"}, {"title": "USC ranked No. 13 in On3's preseason Top 25", "summary": "The Trojans enter 2026 ranked 13th nationally in On3's preseason poll, fourth in the Big Ten. Analysts point to Maiava's return, the No. 1 recruiting class, and Gary Patterson's hiring at defensive coordinator as reasons for optimism.", "url": "https://www.si.com/college/usc/football/usc-trojans-preseason-top-25-rankings-college-football"}, {"title": "Jayden Maiava reveals plans to take USC to another level", "summary": "After passing on the 2026 NFL Draft, Maiava said his versatility and chemistry with receivers will be crucial. He's been meeting with former USC QBs Caleb Williams, Sam Darnold, and Matt Leinart for inspiration.", "url": "https://www.newsweek.com/sports/ncaa/jayden-maiava-reveals-how-he-plans-to-take-usc-to-another-level-12300492"}], "fun_facts": ["USC signed the No. 1 high school recruiting class in the country for 2026 — the first non-SEC team to claim the 247Sports recruiting title since 2008.", "The Trojans open their brand-new $200 million Bloom Football Performance Center this season, a 160,000-square-foot facility.", "USC's 2026 opener vs. San Jose State on Aug. 29 is a Week Zero game airing on NBC — the Trojans are 6-0 all-time vs. the Spartans.", "Four Trojans have won the Maxwell Award: O.J. Simpson, Charles White, Marcus Allen, and Caleb Williams.", "USC plays seven home games in 2026, hosting Oregon, Ohio State, and Washington at the Coliseum."], "further_reading": [{"title": "Lincoln Riley leans into high expectations for 2026", "why": "Riley says the talent gap is closed and USC is 'more equipped' for a CFP run than ever in his tenure.", "url": "https://www.on3.com/news/uscs-lincoln-riley-leans-into-high-expectations-for-the-trojans-in-2026/"}, {"title": "Riley believes USC has a window to win big in 2026", "why": "In-depth CBS Sports profile on how USC pivoted to high school recruiting and hired Gary Patterson to unlock playoff potential.", "url": "https://www.cbssports.com/college-football/news/lincoln-riley-usc-win-big-2026-season/"}, {"title": "Offensive depth chart projection halfway through fall camp", "why": "Detailed projected two-deep from LAFB Network, including how the O-line adjusts without O'Connor.", "url": "https://www.lafbnetwork.com/ncaaf/usc-trojans/my-best-guess-at-the-usc-trojans-offensive-depth-chart-halfway-through-fall-camp/"}, {"title": "Lincoln Riley names three priorities for USC's season", "why": "Riley outlines depth, defense under Patterson, and game-day readiness as the key focus areas.", "url": "https://www.si.com/college/usc/football/lincoln-riley-names-three-priorities-usc-trojans-season"}, {"title": "2026 USC football schedule and kickoff times", "why": "Full schedule with TV networks for the first four games, including Big Ten road trips to Rutgers, Penn State, and Wisconsin.", "url": "https://usctrojans.com/news/2026/5/27/kickoff-times-and-tv-networks-set-for-first-four-usc-football-games-of-2026-season"}], "one_sentence": "USC's fall camp is narrowing the depth chart as Jayden Maiava and the No. 1 recruiting class prepare for a Week Zero opener vs. San Jose State on Aug. 29 with CFP hopes on the line."}, {"name": "Rams", "sport": "NFL", "emoji": "🏈", "accent": "#003594", "record": "12-5 (2025) | Preseason: 1-0", "headline": "Ty Simpson shines in preseason debut with 2 TDs as Aaron Donald weighs comeback", "latest_news": [{"title": "Ty Simpson impresses in Rams preseason debut — 21-of-25, 2 TDs vs. Chiefs", "summary": "Rookie QB Ty Simpson completed 21 of 25 passes for 190 yards and two touchdowns, leading the Rams to a 20-12 preseason win at Arrowhead Stadium. Simpson has pushed Stetson Bennett for the backup role behind reigning MVP Matthew Stafford.", "url": "https://www.latimes.com/sports/rams/story/2026-08-15/ty-simpson-sharp-performance-rams-chiefs-preseason"}, {"title": "Aaron Donald completes second official Rams workout as comeback decision looms", "summary": "Retired DT Aaron Donald had his second official workout with the Rams on Sunday. McVay says the decision is 'on his timeline' with tentative targets set internally, but no deadline imposed.", "url": "https://www.turfshowtimes.com/los-angeles-rams-news/146252/rams-donald-simpson-bennett-mcvay-preseason"}, {"title": "Rams depth chart reset: Simpson overtakes Bennett as QB2?", "summary": "After preseason Week 1, Ty Simpson appears to have seized the backup quarterback job over Stetson Bennett. Bennett led a field-goal drive in two series but Simpson looked far more dynamic.", "url": "https://www.turfshowtimes.com/los-angeles-rams-analysis/146280/l-a-rams-depth-chart-preseason-week-1"}, {"title": "Rookie TE Max Klare emerging as reliable target — 7 catches vs. Chiefs", "summary": "Second-round pick Max Klare was targeted eight times and caught seven passes for 37 yards in the preseason opener, showing he can be a trustworthy option in McVay's offense.", "url": "https://www.therams.com/news/5-takeaways-from-rams-20-12-preseason-week-1-win-over-chiefs-ty-simpson-looks-comfortable-max-klare-a-trustworthy-target-xavier-smith-s-big-punt-return-and-more"}, {"title": "Keagen Trost suffers hamstring injury — O-line depth tested again", "summary": "Third-round pick Keagen Trost left the Chiefs game with a hamstring injury. With Alaric Jackson potentially facing a suspension, the Rams' offensive line depth is a growing concern heading into Week 2.", "url": "https://www.latimes.com/sports/rams/story/2026-08-15/ty-simpson-sharp-performance-rams-chiefs-preseason"}, {"title": "Saints offense passes test; Cowboys and Rams up next in joint practices", "summary": "The New Orleans Saints' offense showed improvement in a joint practice with the Jaguars, and now Dallas and Los Angeles are next on the preseason schedule ahead of Saturday's game.", "url": "https://www.espn.com/nfl/story/_/id/49619693/new-orleans-saints-offense-passes-one-test-joint-practice-jaguars-cowboys-rams-next"}], "fun_facts": ["Ty Simpson's 84% completion rate (21/25) in his NFL debut was the highest by a Rams rookie QB in a preseason game in franchise history.", "Matthew Stafford told Simpson before his debut: 'Just go let it rip' — five words from the reigning MVP that set the tone.", "The Rams sat 41 players in their preseason opener, meaning the roster battles are being decided by the bottom third of the roster.", "Myles Garrett's arrival has brought what teammates call 'monster energy' to a defense that already posted 50+ sacks last season.", "The NFC West was ranked the #1 division in the NFL entering 2026, with the Rams picked by many as the conference favorite."], "further_reading": [{"title": "ESPN: 2026 Rams Training Camp intel and updates", "why": "Comprehensive daily updates from training camp covering position battles, injuries, and player evaluations.", "url": "https://www.espn.com/nfl/story/_/id/49434454/los-angeles-rams-training-camp-2026-intel-updates"}, {"title": "AP News: Matthew Stafford agrees to 1-year extension through 2027", "why": "Key offseason move locking in the reigning MVP for another season, signaling the Rams' Super Bowl window is wide open.", "url": "https://apnews.com/article/rams-matthew-stafford-extension-c5bfefb573a58b8dcfd179a51587940f"}, {"title": "USA Today: Aaron Donald workout and Ty Simpson preseason performance", "why": "Covers the two biggest stories coming out of Rams camp — Donald's potential return and Simpson's breakout debut.", "url": "https://cardswire.usatoday.com/story/sports/nfl/cardinals/2026/08/16/la-rams-news-aaron-donald-workout-ty-simpson-preseason-performance/91331371007"}, {"title": "LA Times: Myles Garrett's new Rams teammates awed by his aura", "why": "How the blockbuster Garrett trade is reshaping the Rams' defense and locker room culture.", "url": "https://www.latimes.com/sports/rams/story/2026-08-02/myles-garrett-rams-training-camp-aura-nfl"}], "one_sentence": "Rams rookie QB Ty Simpson threw for 2 TDs in a 20-12 preseason win over the Chiefs while Aaron Donald works toward a potential comeback decision."}]};
+const DIGEST_DATA = {"updated_at": "2026-08-17T15:00:00.000000+00:00", "title": "LA Sports Daily Digest — 15-Minute Edition", "read_time": "~15 minutes", "intro": "Los Angeles sports finds itself at a fascinating crossroads as August unfolds. The Dodgers, once cruising toward another NL West crown, are now mired in a brutal slump that has exposed every crack in their roster—from a closer who can't hold leads to a lineup of superiors who suddenly look mortal. USC's fall camp is generating real excitement as Lincoln Riley's roster takes shape ahead of a Week Zero showdown against San Jose State, with the No. 1 recruiting class in the nation arriving on campus and the expectations soaring to levels not seen in over a decade. And the Rams? Sean McVay's squad is already flashing significant potential in preseason play while the Aaron Donald saga adds an irresistible subplot to what promises to be a memorable 2026 campaign. It's a loaded weekend across the LA sports landscape, and we have a lot of ground to cover today. Let's break down the biggest stories across all three franchises and examine what matters, why it matters, and what to watch for in the days ahead.", "intro_zh": "洛杉磯體壇在八月來臨之際正處於一個令人著迷的十字路口。道奇隊原本穩穩朝著另一座國聯西區冠軍邁進，如今卻深陷泥淖，暴露了陣容的每一處裂縫。USC的秋季訓練營正產生真正的興奮感，Lincoln Riley的名單在對San Jose State的Week Zero開幕戰前逐漸成形。而公羊隊呢？Sean McVay的隊伍在季前賽中已經展現出巨大的潛力，Aaron Donald的回歸大戲更為這場注定難忘的2026賽季增添了一抹引人入勝的戲劇性。今天有很多要點要談，讓我們深入分析三大球隊的最大新聞，並審視哪些事項重要以及為何此刻至關重要。", "segments": [{"team": "Dodgers", "accent": "#2A6FD8", "headline": "Dodgers in Free Fall: Roberts Sounds the Alarm as the Offense, Closer, and Rotation All Fracture Simultaneously", "headline_zh": "道奇隊全面崩塌：Roberts拉響警報，攻擊火力、終結者與輪值同時崩解", "analysis": "Dave Roberts didn't mince words after a 6-2 loss to the Brewers cost the Dodgers a critical tiebreaker in the NL West race. Los Angeles is 5-11 in its past 16 games and 18-21 since July 1, with the offense ranking a dismal 23rd in runs scored over that stretch. When your manager is publicly decrying the team's inability to play fundamental baseball in mid-August, the alarm bells are deafening. This isn't a blip—it's a pattern that threatens to undermine what should be a comfortable division title.
+
+The closer crisis compounds everything. Edwin Diaz blew his third save in four appearances Thursday, surrendering four consecutive singles and three runs in the ninth inning as his ERA ballooned to an almost incomprehensible 11.57. Roberts admitted he has \"no other option\" at the back end, and the fact that the Dodgers are riding a closer with an ERA north of 11 into a pennant race tells you everything about the state of this bullpen. The alternatives throughout the relief corps aren't inspiring confidence either, and opposing lineups have clearly identified the ninth inning as their best window to steal games. The Dodgers' inability to lock down late leads is fundamentally altering the calculus of how Roberts manages the final three innings—pulling starters earlier, burning setup men in the seventh and eighth, and praying that Diaz finds something resembling his old form.
+
+On the pitching front, the Dodgers absorbed another blow when All-Star lefty Justin Wrobleski was placed on the 15-day IL with forearm inflammation. Wrobleski had been one of their most reliable arms at 11-5 with a 3.56 ERA, and losing him removes a critical piece from an already strained rotation depth chart. Kyle Hurt was recalled from Triple-A as the corresponding move, but he's unproven at the major league level. The bright spot is Shohei Ohtani, who threw 34 pitches with his full repertoire on August 15 in his first bullpen session since restarting his throwing program. The two-way star's 1.79 ERA as a pitcher would rank among MLB leaders if he had enough innings for qualification. If he progresses through live batting practice sessions, a mound return in early-to-mid September is realistic—potentially the Dodgers' ultimate deadline acquisition without giving up a single prospect. Blake Snell's return from the IL has also been encouraging, with 10 strikeouts in six dominant innings against the Royals. Yoshinobu Yamamoto struck out nine across six frames in Friday's 3-1 win over Milwaukee, showing the rotation still has arms capable of carrying this team if the offense can wake up.
+
+Then there's the offense, or the conspicuous lack thereof. Kyle Tucker was benched for a mental reset amid baffling home splits that have everyone puzzled: .192/.290/.276 at Dodger Stadium versus a much more respectable .275/.371/.469 on the road. Roberts said Tucker is \"conscious\" of the stark disparities and needed a day to step away. The broader offensive malaise is even more alarming—the $153.5 million quartet of Ohtani, Tucker, Freeman, and Betts combined to go a pathetic 5-for-50 in the Brewers series. When your four highest-paid hitters are your biggest problem, roster construction questions become unavoidable and front office scrutiny intensifies. The one silver lining is Max Muncy, who just passed Eric Karros for the most home runs in Dodger Stadium history, but individual milestones ring hollow when the team is spiraling out of control.
+
+Analyst Take: The Dodgers still lead the NL West by a comfortable seven games, but this is absolutely no time for complacency. The September schedule tightens considerably, the bullpen is a genuine liability that could cost them in October, and the rotation depth is severely depleted. Ohtani's potential return could be truly transformative, but banking on a player who hasn't pitched competitively in months remains a significant gamble. Roberts needs to find answers—fast—or this season could unravel before October even arrives. The window to right the ship is closing rapidly, and the Dodgers' margin for error is shrinking with every losses.", "analysis_zh": "Dave Roberts在6-2輸給釀酒人的比賽後毫不客氣，這場失利讓道奇隊在國聯西區爭奪中失去了關鍵的平手打破優勢。道奇隊過去16場比賽5勝11敗，自7月1日以來18勝21敗，攻擊火力在那段期間慘澹地排名全聯盟第23。當你的總教練在八月中公開批評球隊連基本棒球都打不好時，警鐘已經震耳欲聾。這不是曇花一現——而是一種威脅著本該是輕鬆分區封王的模式。
+
+終結者危機使一切雪上加霜。Edwin Diaz周四在四次救援機會中第三次救援失敗，第九局連續四支安打失三分，ERA膨脹到幾乎令人難以置信的11.57。Roberts承認他在最後關頭「沒有其他選擇」，而道奇隊在爭奪冠軍賽中竟然要倚賴ERA超過11的終結者，這充分說明了牛棚的慘況。整體牛棚中的替代方案也無法讓人安心，對手打線已經清楚識別第九局是他們偷走比賽的最佳窗口。
+
+投手方面，道奇隊在全明星左投Justin Wrobleski因前臂發炎被放進15天傷兵名單時又遭受一記重擊。Wrobleski一直是最穩定的戰力之一，戰績11勝5敗、ERA 3.56，失去他從本已緊張的輪值深度表中移除了關鍵一環。Kyle Hurt從3A被拉上來作為相應調動，但他在大聯盟層級尚未證明自己。亮點在於Shohei Ohtani，他於8月15日進行了重啟投球計畫後的首次牛棚練習，投出34球並使用完整球種。這位二刀流球星的投手ERA 1.79若達到合格投球局數標準，將在全聯盟名列前茅。若他能通過實戰打擊練習，9月初至中旬重返投手丘是現實的——這可能是道奇隊不用犧牲任何新秀就獲得的最大交易補強。Blake Snell從傷兵名單回歸也令人振奮，對皇家隊投出六局三振十人的精彩表現。Yoshinobu Yamamoto周五在3-1擊敗密爾瓦基的比賽中投六局三振九人，顯示輪值仍有能力扛起這支球隊。
+
+攻擊端更是問題重重，或者說是明顯的火力匱乏。Kyle Tucker因令人困惑的主場表現低迷而被冰在板凳上進行心理調整——在道奇球場的打擊率僅.192/.290/.276，而在客場則是體面得多的.275/.371/.469。Roberts表示Tucker「清楚意識到」這些懸殊的差距，需要一天時間離開調整。更廣泛的攻擊停擺更令人擔憂——四位年薪合計1.535億美元的球星Ohtani、Tucker、Freeman和Betts在對釀酒人的系列賽中合計50打數僅5安打，表現令人沮喪。當你薪水最高的四位打者反而成為最大問題時，陣容建構的質疑就變得無可避免，前場辦公室也面臨更大的審視壓力。唯一的亮點是Max Muncy，他剛超越Eric Karros成為道奇球場歷史全壘打王，但在球隊崩盤之際，個人紀錄聽起來只是杯水車薪。
+
+分析師觀點：道奇隊仍以舒適的7場勝差領先國聯西區，但現在絕非自滿之時。九月賽程將顯著更加緊湊，牛棚是可能在十月讓他們付出代價的真正隱患，輪值深度也已元氣大傷。Ohtani的潛在回歸可能是決定性的轉變，但倚賴一位數月未正式投球的球員仍然是一場重大的豪賭。Roberts需要迅速找到答案——否則這個賽季可能在十月到來之前就已崩解。扭轉局面的窗口正在快速關閉。"}, {"team": "USC Trojans", "accent": "#9E1B32", "headline": "Depth Chart Crystallizes, Awards Pile Up, and the CFP Hopes Are Very Real as Week Zero Looms Over the Coliseum", "headline_zh": "depth chart成形、獎項接踵而至，隨著Week Zero逼近Coliseum，季後賽夢想真實存在", "analysis": "Lincoln Riley says the coaching staff is getting a \"pretty good idea\" of Game 1 roles after a pivotal scrimmage inside the Los Angeles Memorial Coliseum. Wide receiver and offensive line battles are narrowing down as the Trojans enter the final two weeks of fall camp before their Aug. 29 opener against San Jose State. This is exactly the kind of mid-camp clarity that championship-caliber programs need—not scrambling for answers on Sept. 1.
+
+The one significant blow to USC's preparations is the loss of projected starting center Kilian O'Connor, a redshirt senior and former walk-on who suffered a season-ending injury in practice. Tobias Raymond is expected to slide into the center role after working there throughout the spring, but losing O'Connor's experience and leadership on the interior offensive line is a notable setback. Interior offensive line continuity is absolutely critical for protecting quarterback Jayden Maiava, who is the engine that makes this entire offense run. This setback forces USC to adapt quickly, and it's a real test of the depth that Riley has emphasized all offseason.
+
+The individual accolades keep rolling in, reinforcing the national buzz surrounding this program. QB Jayden Maiava, who threw for 3,711 yards and 24 TDs in 2025 before making the surprising decision to return rather than enter the NFL Draft, earned Maxwell Award preseason recognition alongside running back Waymond Jordan. Jordan rushed for an impressive 576 yards in just six games before a season-ending injury last year—imagine what a full healthy season could produce behind what should be one of the Big Ten's better offensive lines. Maiava also earned Big Ten Preseason Honors, and he's been meeting with former USC quarterbacks Caleb Williams, Sam Darnold, and Matt Leinart for inspiration and mentorship as he prepares for what he hopes will be a Heisman-caliber campaign.
+
+Kicker Ryon Sayeri, who set USC's single-season FG record with 21 made last year—highlighted by a breathtaking 54-yarder against Michigan—earned Lou Groza Award recognition. In tight Big Ten games that are often decided by a single possession, a reliable kicker isn't a luxury—it's an absolute necessity. USC's special teams edge could very well be the difference in multiple one-score contests this fall.
+
+The broader picture is incredibly exciting: USC enters 2026 ranked 13th nationally in On3's preseason poll, fourth in the Big Ten. The No. 1 high school recruiting class in the country—the first non-SEC team to claim the 247Sports recruiting title since 2008—combined with Gary Patterson's hiring as defensive coordinator and the opening of the brand-new $200 million Bloom Football Performance Center all point to a program that is not merely competing but genuinely contending for a College Football Playoff berth. The Trojans are 6-0 all-time against San Jose State, and the game will air on NBC, giving USC a national stage to set the tone for what could be a special season. Seven home games at the Coliseum in 2026, including Oregon, Ohio State, and Washington, make the schedule a gauntlet but also a canvas for statement victories.
+
+Analyst Take: This feels like the year USC's rebuild under Riley reaches critical mass. The talent is undeniably there, the coaching staff has been significantly strengthened, and the schedule—while brutally featuring Oregon, Ohio State, and Washington all visiting the Coliseum—provides ample opportunities for the kind of statement wins that the selection committee rewards. Maiava's decision to return rather than enter the NFL Draft was the catalyst that elevated the ceiling of this entire program, and now it's purely about execution on the field. The Week Zero opener on Aug. 29 will set the tone for everything that follows. This is the most talented USC roster in over a decade, and the expectations—while high—are backed by genuine substance.", "analysis_zh": "Lincoln Riley表示教練團在洛杉磯紀念體育場內的關鍵對抗賽後，已經對首戰的名單有了「相當清楚的輪廓」。外接手和進攻線的競爭在USC進入8月29日對San Jose State開幕戰前的秋季訓練營最後兩週時逐漸明朗。這正是爭冠等級的球隊在營中所需的明確性——而不是拖到9月1日才在慌亂中尋找答案。
+
+USC備戰過程中的一個重大打擊是預計先發center Kilian O'Connor的賽季報銷，這位redshirt senior、前walk-on球員在練習中受傷。Tobials Raymond預計將在center位置上接替，他在整個春季都有在該位置練習，但失去O'Connor在進攻線內側的經驗和領導力是一個顯著的挫折。進攻線內側的連續性對於保護quarterback Jayden Maiava絕對至關重要，他是整個進攻體系的核心動力。這次挫折迫使USC迅速調整，也真正考驗了Riley整個休賽季一直強調的板凳深度。
+
+個人獎項持續湧入，強化了圍繞這支球隊的全國關注度。QB Jayden Maiava在2025年投出3,711碼和24個達陣後做出了令人驚訝的決定——回來而不是投入NFL選秀——他與running back Waymond Jordan一同獲得Maxwell Award preseason認可。Jordan去年在僅六場比賽中衝出令人印象深刻的576碼後因傷赛季報銷——想像一下，在一個健康的完整賽季、在Big Ten較好的進攻線前方衝刺會是什麼樣子。Maiava同時獲得Big Ten Preseason Honors，他一直在與前USC quarterback Caleb Williams、Sam Darnold和Matt Leinart會面，尋求靈感和指導，為他希望成為Heisman獎級別的賽季做準備。
+
+踢球手Ryon Sayeri去年創下USC單季21顆field goal的紀錄，其中包含一記令人屏息的對密西根54碼長踢，獲得Lou Groza Award認可。在常常以一次持球決勝的激烈Big Ten比賽中，可靠的踢球手不是奢侈品——而是絕對的必需品。USC在special teams上的優勢很可能在這個秋天多場一回合差的比賽中成為勝負關鍵。
+
+更宏觀的景象令人難以置信地振奮：USC在On3的 preseason poll中排名全國第13，Big Ten第4。全國排名第一的高中招募班級——自2008年以來首個非SEC球隊贏得247Sports招募冠軍——結合聘請Gary Patterson擔任defensive coordinator，以及全新耗資2億美元的Bloom Football Performance Center的啟用，都指向一支不僅在競爭、更在真正爭奪College Football Playoff席位的強權。Trojans對San Jose State的歷史戰績為6勝0敗，比賽將在NBC播出，讓USC獲得一個全國性的舞台來為可能是一個特殊賽季奠定基調。
+
+分析師觀點：這感覺像是USC在Riley執教下重建計畫達到臨界質量的一年。人才是毫無疑問地存在，教練團已經顯著強化，賽程——雖然殘酷地包含Oregon、Ohio State和Washington都造訪Coliseum——提供了大量機會來創造那种選拔委員會會獎勵的代表作勝利。Maiava決定回來而不是投入NFL選秀是提升整個球隊天花板的關鍵催化劑，現在純粹是場上執行力的問題。8月29日的Week Zero開幕戰將為接下來的一切定下基調。這是USC十多年来最具天賦的陣容。"}, {"team": "Rams", "accent": "#003594", "headline": "Simpson Electrifies Arrowhead, Donald Dangles His Comeback, and the Rams' Roster Battles Ignite a Promising Preseason", "headline_zh": "Simpson在Arrowhead球場大放異彩、Donald懸著回歸大戲，公羊隊的名單競爭點燃了一場充滿希望的季前賽", "analysis": "Rookie quarterback Ty Simpson delivered the most eye-popping preseason performance of any Rams quarterback in recent memory, completing 21 of 25 passes for 190 yards and two touchdowns in the Rams' 20-12 preseason win at Arrowhead Stadium against the Kansas City Chiefs. His 84% completion rate was the highest by a Rams rookie QB in a preseason game in franchise history. Matthew Stafford's pre-game advice to the young signal-caller—\"Just go let it rip\"—set the tone for a performance that has the entire organization buzzing with excitement. Simpson showed poise, accuracy, and decisiveness that belied his rookie status, and he has now pushed Stetson Bennett into a legitimate battle for the backup role behind the reigning MVP.
+
+Speaking of Bennett, the former Georgia standout led a field-goal drive in two series but looked far more limited and tentative than Simpson's dynamic performance. After preseason Week 1, it appears Simpson has seized the QB2 job with authority. This is exactly the kind of intrasquad competition that sharpens a roster and pushes everyone to elevate their game—the Rams now have legitimate depth behind Stafford, something that felt tenuously thin entering camp.
+
+The Aaron Donald subplot continues to captivate the entire NFL. The retired defensive tackle had his second official workout with the Rams on Sunday, and the football world is watching with rapt attention. Sean McVay says the decision is \"on his timeline\" with no deadline imposed by the organization. If Donald returns to a defense that already posted 50-plus sacks last season—bolstered by the blockbuster Myles Garrett trade that has brought what teammates call \"monster energy\" to the locker room—the Rams' defensive front could become genuinely historically dominant. The suspense surrounding Donald's decision is palpable across the league, and every update from Rams camp is being dissected by fans and analysts alike. The Rams sat 41 players in their preseason opener, meaning the roster battles being decided are genuinely meaningful—they're evaluating the bottom third of the roster for spots that could prove crucial during a long season.
+
+Rookie tight end Max Klare was targeted eight times and caught seven passes for 37 yards in the preseason opener, showing reliable hands and a knack for finding soft spots in zone coverage. For a team looking to diversify its passing attack beyond Cooper Kupp and Puka Nacua, Klare's dependable receiving ability provides a valuable complementary piece in McVay's offensive scheme. Meanwhile, the concerning news on the offensive line continued when third-round pick Keagen Trost suffered a hamstring injury and left the Chiefs game early. With Alaric Jackson potentially facing a suspension that could sideline him for multiple games, the Rams' offensive line depth is a legitimate and growing concern heading into the second week of preseason play. Protecting Stafford is the organization's top priority, and this thinning depth chart demands urgent attention before the regular season begins.
+
+Analyst Take: The NFC West was ranked the No. 1 division in the NFL entering 2026, with the Rams widely picked by many analysts as the conference favorite—and for good reason. Simpson's emergence gives McVay invaluable quarterback security, and if Donald returns to pair with Garrett, this team's defensive ceiling rises to potentially historic heights. But the offensive line thinness is a real and pressing worry that cannot be ignored—protecting the reigning MVP is paramount, and the Rams simply cannot afford to enter the regular season with genuine uncertainty across the front five. The next two preseason games will be absolutely critical for sorting out the trenches and solidifying the protection schemes. Los Angeles has the talent to win a Super Bowl; the question is whether the infrastructure can hold up over a 17-game season and deep playoff run. The Saints' offense passed its first joint-practice test, and the Cowboys and Rams are next on the preseason schedule—expect McVay to use those sessions to evaluate his front line under pressure.", "analysis_zh": "新秀quarterback Ty Simpson交出了公羊隊近年記憶中最令人矚目的季前賽表現，在Arrowhead球場對堪薩斯城酋長隊的20-12季前賽勝利中，25次傳球完成21次，傳出190碼和兩個達陣。他84%的完成率創下公羊隊史季前賽新秀QB最高紀錄。Matthew Stafford賽前給這位年輕四分衛的建議——「放手去投吧」——為這場讓整個組織為之振奮的表現定下了基調。Simpson展現了超越新秀身分的沉著、精準和果斷，他如今已經向衛冕MVP背後的替補角色發起強勢衝擊，挑戰Stetson Bennett的位置。
+
+說到Bennett，這位前Georgia球星在兩波進攻中帶領了一次field goal drive，但看起來遠不如Simpson的動態表現亮眼，顯得更加受限和猶豫。季前賽第一週後，Simpson似乎已經強勢奪取了QB2的位置。這正是磨練陣容、推動每個人提升表現的那種隊內競爭——公羊隊現在在Stafford背後有了真正可靠的替補深度，這在訓練營開始時還令人擔憂地薄弱。
+
+Aaron Donald的支線劇持續吸引全聯盟的目光。這位已退休的defensive tackle周日進行了與公羊隊的第二次正式訓練，整個足球世界都在屏息關注。Sean McVay表示決定權「在他自己的時間表上」，組織不設期限。若Donald回歸到一個上季已累計50次以上擒殺的防禦體系——加上 blockbuster的Myles Garrett交易為休息室帶來了隊友所說的「怪獸級能量」——公羊隊的防守前線可能達到真正歷史級別的統治力。圍繞Donald決定的懸念讓全聯盟屏息以待，來自公羊隊營地的每一次更新都被球迷和分析師仔細剖析。
+
+新秀tight end Max Klare在季前賽首戰被目標八次，七次成功接球得到37碼，展現可靠的雙手和在區域防守中找到空檔的敏銳度。對於尋求將傳球攻擊多元化、不只依賴Cooper Kupp和Puka Nacua的球隊而言，Klare可靠的接球能力為McVay的進攻體系提供了有價值的互補拼圖。與此同時，進攻線方面的壞消息持續傳來，第三輪pick Keagen Trost遭受腿筋傷勢並提前離開酋長隊之戰。加上Alaric Jackson可能面臨可能讓他缺席多場比賽的禁賽處分，公羊隊的進攻線深度在進入季前賽第二週時成為一個真切且日益嚴重的隱憂。保護Stafford是組織的首要任務，這份日益薄弱的名單需要在例行賽開始前得到緊急關注。
+
+分析師觀點：NFC West在2026年賽季前被評為NFL第一分區，公羊隊被許多分析師廣泛看好為conference冠軍熱門——這是有充分理由的。Simpson的崛起為McVay提供了寶貴的quarterback保險，而若Donald回歸與Garrett搭檔，這支球隊的防守天花板可能上升到歷史性的高度。但進攻線的薄弱是一個真實且迫切的擔憂，絕不能被忽視——保護衛冕MVP是重中之重，公羊隊絕對不能帶著前線五人的真正不確定性進入例行賽。接下來兩場季前賽對於解決 trenches問題和鞏固保護方案 absolutely至關重要。洛杉磯擁有贏得超級碗的天賦；問題在於基礎設施能否在17場例行賽和深入的季後賽之旅中經受住考驗。"}], "closing": "The beauty of August in Los Angeles is that it's simultaneously an ending and a beginning. The Dodgers are fighting through adversity that could either forge them into a postseason force or expose them as pretenders—the next six weeks will determine which narrative prevails. USC is weeks away from determining whether the considerable hype is justified—and the talent, coaching hires, and facilities suggest it very well might be. And the Rams are laying the groundwork for what could be another deep playoff run, with wildcards like Aaron Donald and Ty Simpson keeping everyone on the edge of their seats. It's the most unpredictable time on the LA sports calendar, and as always, we wouldn't have it any other way. We'll be back tomorrow with fresh coverage. Until then, stay locked in.", "closing_zh": "洛杉磯八月之美在於它既是結局也是開端。道奇隊正在逆境中掙扎，這要麼能鍛造他們成為季後賽強權，要麼揭穿他們不過是紙老虎——接下來六週將決定哪種敘事會勝出。USC距離揭曉這些大量炒作是否名副其實僅剩數週——而人才、教練聘任和設施都顯示這很可能名副其實。而公羊隊正在為又一次可能的季後賽深入之旅奠定基礎，Aaron Donald和Ty Simpson這類不確定因素讓每個人都坐立難安。這是LA體壇日曆上最不可預測的時刻，一如既往，我們樂在其中。我們明天將帶回最新報導，敬請鎖定。"};
+let lang = "en";
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function renderDigest(d){
+  const box = document.getElementById("digest");
+  if(!d || !d.segments){
+    box.innerHTML = '<div style="text-align:center;color:var(--dim);padding:40px">No digest yet</div>';
+    return;
+  }
+  const segs = d.segments.map(s=>{
+    const headline = lang==="en" ? s.headline : s.headline_zh;
+    const analysis = lang==="en" ? s.analysis : s.analysis_zh;
+    return '<div class="seg" style="--team:'+esc(s.accent)+'">' +
+      '<div class="row"><span class="hn">'+esc(headline)+'</span><span class="badge">'+esc(s.team)+'</span></div>' +
+      '<div class="lbl">'+(lang==="en"?"Analysis":"分析")+'</div><p>'+esc(analysis)+'</p>' +
+      '</div>';
+  }).join("");
+  box.innerHTML =
+    '<div class="dhead">' +
+      '<div class="t"><div class="mic">🎙️</div><div><h2>'+esc(d.title)+'</h2><div class="meta">' +
+        esc(d.read_time || "")+' · '+new Date(d.updated_at).toLocaleString()+
+        ' · 繁中/EN</div></div></div>' +
+      '<div class="langs">'+
+        '<button id="btnEn" class="on" onclick="setLang(\'en\')">EN</button>'+
+        '<button id="btnZh" onclick="setLang(\'zh\')">繁體中文</button>'+
+      '</div>' +
+    '</div>' +
+    '<div class="intro">'+esc(lang==="en"?d.intro:d.intro_zh)+'</div>' +
+    '<div class="segs">'+segs+'</div>' +
+    '<div class="closing">'+esc(lang==="en"?d.closing:d.closing_zh)+'</div>';
+}
+function setLang(v){ lang = v; document.getElementById("btnEn").classList.toggle("on", v==="en"); document.getElementById("btnZh").classList.toggle("on", v==="zh"); renderDigest(DIGEST_DATA); }
+
+function renderNews(d){ document.getElementById("upd").textContent = new Date(d.updated_at).toLocaleString();
+  const g = document.getElementById("grid"); g.innerHTML = "";
+  for(const t of d.teams){
+    const c = document.createElement("div"); c.className = "card"; c.style.setProperty("--team", t.accent);
+    const emoji = t.emoji==="Baseball"?"⚾":t.emoji==="Football"?"🏈":"🏆";
+    c.innerHTML =
+      '<div class="top"><div class="ico">' + emoji + '</div>' +
+      '<div><div class="name">' + esc(t.name) + '</div><div class="rec">' + t.sport + ' · ' + esc(t.record) + '</div></div></div>' +
+      '<div class="hline">' + esc(t.headline) + '</div>' +
+      '<h3>Latest News</h3><ul class="news">' + t.latest_news.map(n =>
+        '<li><a target="_blank" rel="noopener" href="' + esc(n.url) + '">' + esc(n.title) + '</a><p>' + esc(n.summary) + '</p></li>'
+      ).join("") + '</ul>' +
+      '<h3>Fun Facts</h3><ul class="facts">' + t.fun_facts.map(f => '<li>'+esc(f)+'</li>').join("") + '</ul>' +
+      '<h3>Further Reading</h3><ul class="read">' + t.further_reading.map(f =>
+        '<li><a target="_blank" rel="noopener" href="' + esc(f.url) + '"><span>'+esc(f.title)+'</span><span class="why">'+esc(f.why)+'</span></a></li>'
+      ).join("") + '</ul>' +
+      '<div class="oss">' + esc(t.one_sentence) + '</div>';
+    g.appendChild(c);
+  }
+}
+
+renderDigest(DIGEST_DATA);
+renderNews(TEAMS_DATA);
+</script>
+</body>
+</html>
