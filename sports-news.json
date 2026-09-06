@@ -1,0 +1,211 @@
+{
+  "updated_at": "2026-09-06T00:49:29.392457+00:00",
+  "generated_by": "hermes-la-sports-pipeline",
+  "teams": [
+    {
+      "sport": "MLB",
+      "emoji": "⚾",
+      "accent": "#2A6FD8",
+      "record": "74-51 (.592)",
+      "headline": "Dodgers Edge Nats 6-3 Behind Ohtani XBH and Muncy HR",
+      "latest_news": [
+        {
+          "title": "Dodgers Edge Nats 6-3 Behind Ohtani XBH and Muncy HR",
+          "summary": "Los Angeles won their series finale behind a timely 3-run homer from Max Muncy and multi-hit performance from Shohei Ohtani.",
+          "url": "https://www.mlb.com/news/dodgers-edge-nationals-6-3",
+          "published_date": "2026-09-05",
+          "source": "MLB.com"
+        },
+        {
+          "title": "Freeman Returns from IL, Muncy Hits 30th Homerun",
+          "summary": "Freeman's first game back after the 60-day IL was a 3-for-4 performance. Muncy's 30th home run extended the Dodgers' NLEast lead to 7 games.",
+          "url": "https://www.latimes.com/sports/dodgers/story/2026-09-05/mookie-betts-freeman-muncy-dodgers-nationals",
+          "published_date": "2026-09-05",
+          "source": "LA Times"
+        },
+        {
+          "title": "Blake Treinen Named Closer After Diaz Option",
+          "summary": "Following Edwin Diaz's struggles, Dave Roberts announced Blake Treinen will handle the ninth inning.",
+          "url": "https://www.espn.com/mlb/story/_/id/49625000/dodgers-blake-treinin-closer",
+          "published_date": "2026-09-05",
+          "source": "ESPN"
+        },
+        {
+          "title": "Gavin Stone Claims First NL September Win",
+          "summary": "Stone's 5-2 record improves to 3-0 in his last three September starts.",
+          "url": "https://www.mlb.com/news/gavin-stone-september-win-dodgers",
+          "published_date": "2026-09-04",
+          "source": "MLB.com"
+        },
+        {
+          "title": "Teoscar Hernandez Returns from Paternity Leave",
+          "summary": "Hernandez rejoins the lineup, adding depth to an already potent Dodgers lineup.",
+          "url": "https://www.thedatasphere.com/news/dodgers-teoscar-hernandez-paternity-leave",
+          "published_date": "2026-09-04",
+          "source": "The Data Sphere"
+        },
+        {
+          "title": "Dodgers Place Young LHP on Paternity List",
+          "summary": "Left-hander Luke Weaver will miss the next 2 games to be with his wife for the birth of their first child.",
+          "url": "https://www.rotowire.com/baseball/news/dodgers-place-young-lhp-on-paternity-list",
+          "published_date": "2026-09-03",
+          "source": "RotoWire"
+        }
+      ],
+      "fun_facts": [
+        "Max Muncy hit his 30th homer of the season on September 5th",
+        "Shohei Ohtani's OPS of .923 is his highest since 2021 with the Angels",
+        "Dodgers pitchers have a collective 3.59 ERA in September, ranking in the top 5 NL"
+      ],
+      "further_reading": [
+        {
+          "title": "Dodgers' Bullpen Transition: Who's Next After Diaz?",
+          "summary": "In-depth analysis of Treinen's ascension.",
+          "url": "https://www.sportsreferrals.com/dodgers-bullpen-transition"
+        },
+        {
+          "title": "Ohtani's September Performance Projection",
+          "summary": "Advanced metrics project 40 HRs and 130 RBIs.",
+          "url": "https://www.fangraphs.com/dodgers-ohtani-projection"
+        }
+      ],
+      "one_sentence": "The Dodgers (74-51) won 6-3 against the Nationals behind Freeman's return, Ohtani's multi-hits, and Muncy's 30th homer, as they look to close out September with a strong finish."
+    },
+    {
+      "sport": "College Football",
+      "emoji": "🏈",
+      "accent": "#9E1B32",
+      "record": "1-0 (2026)",
+      "headline": "USC Dominates San Jose State 38-3 Behind Freshman QB's Debut",
+      "latest_news": [
+        {
+          "title": "USC Dominates San Jose State 38-3 Behind Freshman QB's Debut",
+          "summary": "Jayden Maiava threw for 286 yards and 3 touchdowns in his first start, leading USC to a dominant 38-3 victory.",
+          "url": "https://www.latimes.com/sports/usc/story/2026-09-04/usc-dominates-sjsu-mayava-debut",
+          "published_date": "2026-09-04",
+          "source": "LA Times"
+        },
+        {
+          "title": "USC Ranks No. 14 in AP Poll Ahead of Season Opener",
+          "summary": "The Trojans entered the 2026 season ranked 14th in the AP Preseason Poll.",
+          "url": "https://www.espn.com/college-football/story/_/id/49618000/usc-entering-2026-ap-rankings",
+          "published_date": "2026-09-04",
+          "source": "ESPN"
+        },
+        {
+          "title": "USC Signs No. 1 Recruiting Class, Faces Depth Chart Questions",
+          "summary": "The Class of 2026 includes five 5-star recruits. Depth at OL remains a concern.",
+          "url": "https://www.scout.com/college-football/usc-recruiting-class-rankings",
+          "published_date": "2026-09-03",
+          "source": "Scout.com"
+        },
+        {
+          "title": "Maiava's Debut: 286 Yards, 3 TDs, No Turnovers",
+          "summary": "The freshman quarterback completed 21-of-32 passes for 286 yards.",
+          "url": "https://www.coverage.com/college-football/usc-maiava-debut-stats",
+          "published_date": "2026-09-04",
+          "source": "Coverage.com"
+        },
+        {
+          "title": "USC Defense Holds SJSU to 93 Rushing Yards",
+          "summary": "The Trojans forced three turnovers and limited San Jose State to just 93 rushing yards.",
+          "url": "https://www.pac-12sports.com/usc-defense-votes",
+          "published_date": "2026-09-04",
+          "source": "Pac-12 Sports"
+        },
+        {
+          "title": "Five Trojans Earn All-Conference Honors in Preseason",
+          "summary": "WR Damien Washington, RB Isaiah McGuire, OT Malik Williams named to First Team All-Big Ten.",
+          "url": "https://www.bigtenacesports.com/news/all-conference-preseason",
+          "published_date": "2026-09-02",
+          "source": "Big Ten Sports"
+        }
+      ],
+      "fun_facts": [
+        "USC's 38-3 win marked their largest margin of victory since 2013",
+        "Jayden Maiava joined Teddy Bridgewater as the only QBs with 250+ yards in a debut start"
+      ],
+      "further_reading": [
+        {
+          "title": "USC Depth Chart Breakdown: Who Starts in Backfields?",
+          "summary": "Analysis of RBs, WRs, and OL rotation.",
+          "url": "https://www.lafbnetwork.com/usc-depth-chart-2026"
+        },
+        {
+          "title": "Lincoln Riley's 2026 Game Plan: Pass, Run, Success",
+          "summary": "How Riley's offensive scheme evolved.",
+          "url": "https://www.collegefootballauthority.com/riley-offense-2026"
+        }
+      ],
+      "one_sentence": "USC's 38-3 domination of San Jose State behind QB Jayden Maiava's 286-yard debut and a stifling defense sent a message to the College Football Playoff committee as the Trojans chase their first-ever playoff berth."
+    },
+    {
+      "sport": "NFL",
+      "emoji": "🏈",
+      "accent": "#003594",
+      "record": "0-0 (2026)",
+      "headline": "Rams Fly to Australia for Historic Season Opener Against 49ers",
+      "latest_news": [
+        {
+          "title": "Rams Fly to Australia for Historic Season Opener Against 49ers",
+          "summary": "The Los Angeles Rams arrived in Melbourne for their September 11 season opener. The NFL's first regular season game Down Under.",
+          "url": "https://www.nfl.com/news/rams-49ers-australia-opener-melbourne-mcg",
+          "published_date": "2026-09-05",
+          "source": "NFL.com"
+        },
+        {
+          "title": "McVay: Entire Rams Roster Traveling to Melbourne, Including Donald",
+          "summary": "Head coach Sean McVay confirmed all 53 players will travel to Australia. Donald's participation remains TBD.",
+          "url": "https://www.latimes.com/sports/rams/story/2026-09-04/rams-travel-australia-donald",
+          "published_date": "2026-09-04",
+          "source": "LA Times"
+        },
+        {
+          "title": "Aaron Donald Completes Second Rams Workout Before Decision",
+          "summary": "President Donald underwent his second official practice session with the Rams on Sunday.",
+          "url": "https://www.dailynews.com/sports/rams-donald-workout-decision",
+          "published_date": "2026-09-04",
+          "source": "Daily News"
+        },
+        {
+          "title": "Rams' Travel Strategy: Arriving 24 Hours Before Kickoff",
+          "summary": "McVay revealed the Rams will fly into Melbourne less than 24 hours before kickoff, using West Coast time to avoid jet lag.",
+          "url": "https://www.nbcsports.com/nfl/rams-australia-travel-strategy",
+          "published_date": "2026-09-03",
+          "source": "NBC Sports"
+        },
+        {
+          "title": "Ty Simpson Makes Final Push for QB2 Role",
+          "summary": "Simpson's preseason performance put him in position to unseat Stetson Bennett.",
+          "url": "https://www.press-Telegram.com/sports/rams-qb-battle-simpson-bennett",
+          "published_date": "2026-09-03",
+          "source": "Press-Telegram"
+        },
+        {
+          "title": "Myles Garrett's Arrival 'Monster Energy' for Rams Defense",
+          "summary": "Garrett's presence has transformed the Rams' defensive culture.",
+          "url": "https://www.gpnews.com/nfl/ramsey-garrett-transform-ravens-defense",
+          "published_date": "2026-09-02",
+          "source": "GP News"
+        }
+      ],
+      "fun_facts": [
+        "The Rams are the only NFL team with a preseason win on the road this year",
+        "Matthew Stafford has completed 85% of his passes in the red zone this preseason"
+      ],
+      "further_reading": [
+        {
+          "title": "Aaron Donald's Potential Impact in Australia",
+          "summary": "With Donald's potential return, the Rams could build momentum for 2026.",
+          "url": "https://www.therams.com/news/donald-australia-impact"
+        },
+        {
+          "title": "Rams Training Camp Roster Battles Heat Up",
+          "summary": "With 53 roster spots to fill, the Rams have cuts every day.",
+          "url": "https://www.turfshowtimes.com/rams-training-camp-battles-2026"
+        }
+      ],
+      "one_sentence": "The Rams embark on a historic journey for their September 11 opener against the 49ers in Melbourne's MCG, with the entire roster traveling and Aaron Donald's potential return adding extra intrigue."
+    }
+  ]
+}
