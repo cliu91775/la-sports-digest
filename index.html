@@ -148,13 +148,13 @@ function setLang(v){ lang = v; document.getElementById("btnEn").classList.toggle
 let currentDigest = null;
 async function loadDigest(){
   try{
-    currentDigest = await fetch("/api/digest?t=0"+Date.now()).then(r=>r.json());
+    currentDigest = await fetch("https://cliu91775.github.io/la-sports-digest/daily-digest.json?t="+Date.now()).then(r=>r.json());
     renderDigest(currentDigest);
-  }catch(e){ document.getElementById("digest").innerHTML = '<div class="spin">No digest — ask sports-analyst to refresh.</div>'; }
+  }catch(e){ document.getElementById("digest").innerHTML = '<div class="spin">Error loading digest — check daily-digest.json deployment</div>'; }
 }
 async function load(){
   try{
-    const r = await fetch("/api/news?t=" + Date.now());
+    const r = await fetch("https://cliu91775.github.io/la-sports-digest/sports-news.json?t="+Date.now());
     const d = await r.json();
     document.getElementById("upd").textContent = new Date(d.updated_at).toLocaleString();
     const g = document.getElementById("grid");
